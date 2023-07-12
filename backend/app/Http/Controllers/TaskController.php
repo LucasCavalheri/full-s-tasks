@@ -4,47 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return TaskResource::collection(Task::all());
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreTaskRequest $request)
     {
-        //
+        $task = Task::create($request->validated());
+
+        return new TaskResource($task);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
+    public function show(string $id)
     {
-        //
+        if ($task = Task::find($id)) {
+            return new TaskResource($task);
+        }
+
+        return response()->json([
+            'message' => 'Task not found',
+        ], 404);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, string $id)
     {
-        //
+        if ($task = Task::find($id)) {
+            $task->update($request->validated());
+
+            return new TaskResource($task);
+        }
+
+        return response()->json([
+            'message' => 'Task not found',
+        ], 404);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
+    public function destroy(string $id)
     {
-        //
+        if ($task = Task::find($id)) {
+            $task->delete();
+        }
+
+        return response()->json([
+            'message' => 'Task not found',
+        ], 404);
     }
 }
