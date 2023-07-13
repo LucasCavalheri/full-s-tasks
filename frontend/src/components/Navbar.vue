@@ -1,10 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container py-2">
-      <a href="index.html" class="navbar-brand">
-        <span>Toedoe</span>
-        <strong>List</strong>
-      </a>
+        <a class="icons" href="https://linkedin.com/in/lucas-cavalheri" target="_blank"
+          ><i class="bi bi-linkedin"></i
+        ></a>
+        <a class="icons" href="https://github.com/LucasCavalheri" target="_blank"
+          ><i class="bi bi-github"></i
+        ></a>
+        <a class="icons" href="https://lucascavalheri.com.br" target="_blank"><i class="bi bi-person"></i></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -19,23 +22,23 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="my-tasks.html" class="nav-link">Tasks</a>
+            <a href="/" class="nav-link">Tasks</a>
           </li>
           <li class="nav-item">
-            <a href="summaries.html" class="nav-link">Summary</a>
+            <a href="/" class="nav-link">Summary</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="login.html" class="btn btn-outline-secondary ms-2"
+            <a href="/" class="btn btn-outline-secondary ms-2"
               >Login</a
             >
           </li>
           <li class="nav-item">
-            <a href="register.html" class="btn btn-danger ms-2">Register</a>
+            <a href="/" class="btn btn-danger ms-2">Register</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="btn btn-outline-secondary ms-2">Logout</a>
+            <a href="/" class="btn btn-outline-secondary ms-2">Logout</a>
           </li>
         </ul>
       </div>
@@ -44,3 +47,16 @@
 </template>
 
 <script setup></script>
+
+<style scoped>
+.icons {
+  font-size: 1.5rem;
+  color: #000;
+  margin-right: 1rem;
+}
+
+.icons:hover {
+  color: #5a5757;
+  transition: 0.5s;
+}
+</style>
