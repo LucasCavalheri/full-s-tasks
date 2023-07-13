@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -15,6 +16,17 @@ class TaskController extends Controller
     }
     public function store(StoreTaskRequest $request)
     {
+        $updateTaskRequest = new UpdateTaskRequest($request->validated());
+
+        $validator = Validator::make($request->all(), $updateTaskRequest->rules());
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'The given data was invalid.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
         $task = Task::create($request->validated());
 
         return new TaskResource($task);
@@ -33,6 +45,17 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, string $id)
     {
+        $updateTaskRequest = new UpdateTaskRequest($request->validated());
+
+        $validator = Validator::make($request->all(), $updateTaskRequest->rules());
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'The given data was invalid.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
         if ($task = Task::find($id)) {
             $task->update($request->validated());
 
@@ -48,6 +71,7 @@ class TaskController extends Controller
     {
         if ($task = Task::find($id)) {
             $task->delete();
+            return response()->json([], 204);
         }
 
         return response()->json([
