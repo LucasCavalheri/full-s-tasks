@@ -6,19 +6,27 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class);
+    }
+
     public function index()
     {
-        return TaskResource::collection(Task::all());
+        return TaskResource::collection(Task::with('user')->get());
     }
-    public function store(StoreTaskRequest $request)
-    {
-        $updateTaskRequest = new UpdateTaskRequest($request->validated());
 
-        $validator = Validator::make($request->all(), $updateTaskRequest->rules());
+    public function store(Request $request)
+    {
+        $storeTaskRequest = new StoreTaskRequest($request->validated());
+
+        $validator = Validator::make($request->all(), $storeTaskRequest->rules());
 
         if ($validator->fails()) {
             return response()->json([
@@ -27,14 +35,20 @@ class TaskController extends Controller
             ], 422);
         }
 
-        $task = Task::create($request->validated());
+        $task = new Task($request->validated());
+        $task->user_id = Auth::id();
+        $task->save();
 
         return new TaskResource($task);
     }
 
     public function show(string $id)
     {
-        if ($task = Task::find($id)) {
+        $task = Task::find($id);
+
+        $this->authorize('view', $task);
+
+        if ($task) {
             return new TaskResource($task);
         }
 
@@ -43,7 +57,7 @@ class TaskController extends Controller
         ], 404);
     }
 
-    public function update(UpdateTaskRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $updateTaskRequest = new UpdateTaskRequest($request->validated());
 
@@ -56,11 +70,20 @@ class TaskController extends Controller
             ], 422);
         }
 
-        if ($task = Task::find($id)) {
+        $task = Task::find($id);
+
+        // if (!Auth::id() !== $task->user_id) {
+        //     return response()->json([
+        //         'message' => 'You are not authorized to update this task',
+        //     ], 403);
+        // }
+
+        if ($task) {
             $task->update($request->validated());
 
             return new TaskResource($task);
         }
+
 
         return response()->json([
             'message' => 'Task not found',
@@ -69,9 +92,16 @@ class TaskController extends Controller
 
     public function destroy(string $id)
     {
-        if ($task = Task::find($id)) {
+        $task = Task::find($id);
+
+        // if (!Auth::id() !== $task->user_id) {
+        //     return response()->json([
+        //         'message' => 'You are not authorized to update this task',
+        //     ], 403);
+        // }
+
+        if ($task) {
             $task->delete();
-            return response()->json([], 204);
         }
 
         return response()->json([
