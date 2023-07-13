@@ -29,7 +29,7 @@
       <!-- <div class="task-date">24 Feb 12:00</div> -->
     </div>
     <TaskActions
-      @edit-task="enableEdit"
+      @update-task="enableEdit"
       @remove-task="removeTask"
       v-if="!isEdit"
     />
@@ -46,7 +46,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['edit-task', 'complete-task', 'remove-task'])
+const emit = defineEmits(['update-task', 'complete-task', 'remove-task'])
 
 const isEdit = ref(false)
 const editingTask = ref(props.task.name)
@@ -70,7 +70,7 @@ const updateTask = (e) => {
     name: e.target.value,
   }
   isEdit.value = false
-  emit('edit-task', updatedTask)
+  emit('update-task', updatedTask)
 }
 
 const markTaskAsCompleted = () => {
