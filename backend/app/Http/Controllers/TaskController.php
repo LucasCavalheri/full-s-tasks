@@ -14,13 +14,12 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return TaskResource::collection(Task::with('user')->get());
+        return TaskResource::collection(Task::with('user')->orderBy('id', 'desc')->get());
     }
 
     public function store(Request $request)
     {
-        $storeTaskRequest = new StoreTaskRequest($request->validated());
-
+        $storeTaskRequest = new StoreTaskRequest();
         $validator = Validator::make($request->all(), $storeTaskRequest->rules());
 
         if ($validator->fails()) {
@@ -30,8 +29,9 @@ class TaskController extends Controller
             ], 422);
         }
 
-        $task = new Task($request->validated());
-        $task->user_id = Auth::id();
+        $task = new Task($validator->validated());
+        // $task->user_id = Auth::id();
+        $task->user_id = 2;
         $task->save();
 
         return new TaskResource($task);
@@ -41,7 +41,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        $this->authorize('view', $task);
+        // $this->authorize('view', $task);
 
         if ($task) {
             return new TaskResource($task);
@@ -56,9 +56,9 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        $this->authorize('update', $task);
+        // $this->authorize('update', $task);
 
-        $updateTaskRequest = new UpdateTaskRequest($request->validated());
+        $updateTaskRequest = new UpdateTaskRequest();
 
         $validator = Validator::make($request->all(), $updateTaskRequest->rules());
 
@@ -69,30 +69,21 @@ class TaskController extends Controller
             ], 422);
         }
 
-        if ($task) {
-            $task->update($request->validated());
-
-            return new TaskResource($task);
+        if (!$task) {
+            return response()->json([
+                'message' => 'Task not found',
+            ], 404);
         }
 
+        $task->update($validator->validated());
 
-        return response()->json([
-            'message' => 'Task not found',
-        ], 404);
+        return new TaskResource($task);
     }
 
     public function destroy(string $id)
     {
-        $task = Task::find($id);
+        // $this->authorize('delete', Task::find($id));
 
-        $this->authorize('delete', $task);
-
-        if ($task) {
-            $task->delete();
-        }
-
-        return response()->json([
-            'message' => 'Task not found',
-        ], 404);
+        Task::find($id)->delete();
     }
 }
