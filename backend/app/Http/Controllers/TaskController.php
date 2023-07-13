@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Task::class);
-    }
-
     public function index()
     {
         return TaskResource::collection(Task::with('user')->get());
@@ -59,6 +54,10 @@ class TaskController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $task = Task::find($id);
+
+        $this->authorize('update', $task);
+
         $updateTaskRequest = new UpdateTaskRequest($request->validated());
 
         $validator = Validator::make($request->all(), $updateTaskRequest->rules());
@@ -69,14 +68,6 @@ class TaskController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-
-        $task = Task::find($id);
-
-        // if (!Auth::id() !== $task->user_id) {
-        //     return response()->json([
-        //         'message' => 'You are not authorized to update this task',
-        //     ], 403);
-        // }
 
         if ($task) {
             $task->update($request->validated());
@@ -94,11 +85,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        // if (!Auth::id() !== $task->user_id) {
-        //     return response()->json([
-        //         'message' => 'You are not authorized to update this task',
-        //     ], 403);
-        // }
+        $this->authorize('delete', $task);
 
         if ($task) {
             $task->delete();

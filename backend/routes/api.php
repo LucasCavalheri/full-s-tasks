@@ -23,7 +23,15 @@ Route::prefix('/auth')->group(function () {
     Route::post('/logout', LogoutController::class)->middleware(['auth:sanctum']);
 });
 
-Route::middleware('auth:sanctum')->prefix('/tasks')->group(function () {
+// Route::middleware('auth:sanctum')->prefix('/tasks')->group(function () {
+//     Route::post('/', [TaskController::class, 'store']);
+//     Route::get('/', [TaskController::class, 'index']);
+//     Route::get('/{id}', [TaskController::class, 'show']);
+//     Route::patch('/{id}', [TaskController::class, 'update']);
+//     Route::delete('/{id}', [TaskController::class, 'destroy']);
+// });
+
+Route::prefix('/tasks')->group(function () {
     Route::post('/', [TaskController::class, 'store']);
     Route::get('/', [TaskController::class, 'index']);
     Route::get('/{id}', [TaskController::class, 'show']);
