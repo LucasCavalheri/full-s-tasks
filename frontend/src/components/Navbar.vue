@@ -1,13 +1,18 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container py-2">
-        <a class="icons" href="https://linkedin.com/in/lucas-cavalheri" target="_blank"
-          ><i class="bi bi-linkedin"></i
-        ></a>
-        <a class="icons" href="https://github.com/LucasCavalheri" target="_blank"
-          ><i class="bi bi-github"></i
-        ></a>
-        <a class="icons" href="https://lucascavalheri.com.br" target="_blank"><i class="bi bi-person"></i></a>
+      <a
+        class="icons"
+        href="https://linkedin.com/in/lucas-cavalheri"
+        target="_blank"
+        ><i class="bi bi-linkedin"></i
+      ></a>
+      <a class="icons" href="https://github.com/LucasCavalheri" target="_blank"
+        ><i class="bi bi-github"></i
+      ></a>
+      <a class="icons" href="https://lucascavalheri.com.br" target="_blank"
+        ><i class="bi bi-person"></i
+      ></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -22,20 +27,28 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="/" class="nav-link">Tasks</a>
+            <RouterLink :to="{ name: 'tasks' }" class="nav-link"
+              >Tasks</RouterLink
+            >
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link">Summary</a>
+            <RouterLink :to="{ name: 'summary' }" class="nav-link"
+              >Summary</RouterLink
+            >
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="/" class="btn btn-outline-secondary ms-2"
-              >Login</a
+            <RouterLink
+              :to="{ name: 'login' }"
+              class="btn btn-outline-secondary ms-2"
+              >Login</RouterLink
             >
           </li>
           <li class="nav-item">
-            <a href="/" class="btn btn-danger ms-2">Register</a>
+            <RouterLink :to="{ name: 'register' }" class="btn btn-danger ms-2"
+              >Register</RouterLink
+            >
           </li>
           <li class="nav-item">
             <a href="/" class="btn btn-outline-secondary ms-2">Logout</a>
@@ -58,5 +71,10 @@
 .icons:hover {
   color: #5a5757;
   transition: 0.5s;
+}
+
+.nav-link.router-link-active {
+  color: #000;
+  font-weight: bold;
 }
 </style>
