@@ -30,8 +30,7 @@ class TaskController extends Controller
         }
 
         $task = new Task($validator->validated());
-        // $task->user_id = Auth::id();
-        $task->user_id = 2;
+        $task->user_id = Auth::id();
         $task->save();
 
         return new TaskResource($task);
