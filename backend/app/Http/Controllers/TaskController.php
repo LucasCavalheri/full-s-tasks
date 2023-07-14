@@ -17,6 +17,11 @@ class TaskController extends Controller
         return TaskResource::collection(Task::with('user')->orderBy('id', 'desc')->get());
     }
 
+    public function indexByUser()
+    {
+        return TaskResource::collection(Task::where('user_id', Auth::id())->orderBy('id', 'desc')->get());
+    }
+
     public function store(Request $request)
     {
         $storeTaskRequest = new StoreTaskRequest();
@@ -40,7 +45,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        // $this->authorize('view', $task);
+        $this->authorize('view', $task);
 
         if ($task) {
             return new TaskResource($task);
@@ -55,7 +60,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        // $this->authorize('update', $task);
+        $this->authorize('update', $task);
 
         $updateTaskRequest = new UpdateTaskRequest();
 
@@ -81,7 +86,7 @@ class TaskController extends Controller
 
     public function destroy(string $id)
     {
-        // $this->authorize('delete', Task::find($id));
+        $this->authorize('delete', Task::find($id));
 
         Task::find($id)->delete();
     }
