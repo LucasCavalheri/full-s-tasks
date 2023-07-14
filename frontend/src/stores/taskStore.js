@@ -23,10 +23,10 @@ export const useTaskStore = defineStore('taskStore', () => {
     })
   }
 
-  const handleApiError = (error) => {
+  const handleApiError = (error, message) => {
     if (error.response && error.response.status === 403) {
       errors.value = 'You do not have permission to update this task.'
-      toast.error('Task not updated, this task is not yours.', {
+      toast.error(message, {
         timeout: 1500,
         draggable: true,
       })
@@ -60,7 +60,7 @@ export const useTaskStore = defineStore('taskStore', () => {
       errors.value = null
       handleApiSucess('Task updated successfully!')
     } catch (error) {
-      handleApiError(error)
+      handleApiError(error, 'You do not have permission to update this task.')
     }
   }
 
@@ -75,7 +75,7 @@ export const useTaskStore = defineStore('taskStore', () => {
       errors.value = null
       handleApiSucess('Task completed successfully!')
     } catch (error) {
-      handleApiError(error)
+      handleApiError(error, 'You do not have permission to complete this task.')
     }
   }
 
@@ -87,7 +87,7 @@ export const useTaskStore = defineStore('taskStore', () => {
       errors.value = null
       handleApiSucess('Task deleted successfully!')
     } catch (error) {
-      handleApiError(error)
+      handleApiError(error, 'You do not have permission to delete this task.')
     }
   }
 
