@@ -27,6 +27,7 @@
         <span v-else>{{ task.name }}</span>
       </div>
       <!-- <div class="task-date">24 Feb 12:00</div> -->
+      <small class="text-body-tertiary">{{ task.user }}</small>
     </div>
     <TaskActions
       @update-task="enableEdit"
@@ -85,10 +86,6 @@ const markTaskAsCompleted = () => {
 
 const removeTask = () => {
   if (confirm('Are you sure you want to delete this task?')) {
-    toast.success('Task deleted successfully!', {
-      timeout: 2000,
-      draggable: true,
-    })
     emit('remove-task', props.task)
   }
 }
