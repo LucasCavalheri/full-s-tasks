@@ -1,7 +1,7 @@
 import ViewHome from '@/views/ViewHome.vue'
 import ViewLogin from '@/views/ViewLogin.vue'
 import ViewRegister from '@/views/ViewRegister.vue'
-import ViewSummary from '@/views/ViewSummary.vue'
+import ViewUserTasks from '@/views/ViewUserTasks.vue'
 import ViewTasks from '@/views/ViewTasks.vue'
 import ViewNotFoundError from '@/views/errors/ViewNotFoundError.vue'
 
@@ -20,9 +20,9 @@ const routes = [
     },
   },
   {
-    path: '/summary',
-    component: ViewSummary,
-    name: 'summary',
+    path: '/tasks/user',
+    component: ViewUserTasks,
+    name: 'user.tasks',
     meta: {
       auth: true,
     },

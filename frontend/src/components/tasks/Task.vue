@@ -72,10 +72,6 @@ const updateTask = (e) => {
     name: e.target.value,
   }
   isEdit.value = false
-  toast.success('Task updated successfully!', {
-    timeout: 2000,
-    draggable: true,
-  })
   emit('update-task', updatedTask)
 }
 
@@ -84,10 +80,6 @@ const markTaskAsCompleted = () => {
     ...props.task,
     is_completed: Boolean(!props.task.is_completed),
   }
-  toast.success('Task updated successfully!', {
-    timeout: 2000,
-    draggable: true,
-  })
   emit('complete-task', updatedTask)
 }
 

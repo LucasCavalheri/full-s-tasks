@@ -1,21 +1,39 @@
 import {
   destroyTask,
   indexTask,
+  indexUserTask,
   storeTask,
   updateTask,
 } from '@/http/taskApi.js'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import { useToast } from 'vue-toastification'
 
-// const oldTaskStore = {
-//   state: () => ({}),
-//   actions: {},
-//   getters: {},
-// }
+const toast = useToast()
 
 export const useTaskStore = defineStore('taskStore', () => {
   // State
+  const errors = ref('')
   const tasks = ref([])
+
+  const handleApiSucess = (message) => {
+    toast.success(message, {
+      timeout: 2000,
+      draggable: true,
+    })
+  }
+
+  const handleApiError = (error) => {
+    if (error.response && error.response.status === 403) {
+      errors.value = 'You do not have permission to update this task.'
+      toast.error('Task not updated, this task is not yours.', {
+        timeout: 1500,
+        draggable: true,
+      })
+    } else {
+      errors.value = 'An unknown error occurred.'
+    }
+  }
 
   // Actions
   const handleStoreTask = async (newTask) => {
@@ -28,27 +46,49 @@ export const useTaskStore = defineStore('taskStore', () => {
     tasks.value = data.data
   }
 
-  const handleUpdateTask = async (task) => {
-    const { data: updatedTask } = await updateTask(task.id, task)
-    const currentTask = tasks.value.find((t) => t.id === updatedTask.data.id)
+  const handleIndexUserTask = async () => {
+    const { data } = await indexUserTask()
+    tasks.value = data.data
+  }
 
-    Object.assign(currentTask, updatedTask.data)
+  const handleUpdateTask = async (task) => {
+    try {
+      const { data: updatedTask } = await updateTask(task.id, task)
+      const currentTask = tasks.value.find((t) => t.id === updatedTask.data.id)
+
+      Object.assign(currentTask, updatedTask.data)
+      errors.value = null
+      handleApiSucess('Task updated successfully!')
+    } catch (error) {
+      handleApiError(error)
+    }
   }
 
   const handleCompleteTask = async (updatedTask) => {
-    const { data: updatedTaskResponse } = await updateTask(
-      updatedTask.id,
-      updatedTask,
-    )
-    const index = tasks.value.findIndex((t) => t.id === updatedTask.id)
-
-    tasks.value[index] = updatedTaskResponse.data
+    try {
+      const { data: updatedTaskResponse } = await updateTask(
+        updatedTask.id,
+        updatedTask,
+      )
+      const index = tasks.value.findIndex((t) => t.id === updatedTask.id)
+      tasks.value[index] = updatedTaskResponse.data
+      errors.value = null
+      handleApiSucess('Task completed successfully!')
+    } catch (error) {
+      handleApiError(error)
+    }
   }
 
   const handleDestroyTask = async (task) => {
-    await destroyTask(task.id)
-    const index = tasks.value.findIndex((t) => t.id === task.id)
-    tasks.value.splice(index, 1)
+    try {
+      await destroyTask(task.id)
+      const index = tasks.value.findIndex((t) => t.id === task.id)
+      tasks.value.splice(index, 1)
+      errors.value = null
+      handleApiSucess('Task deleted successfully!')
+    } catch (error) {
+      handleApiError(error)
+    }
   }
 
   // Getters
@@ -60,11 +100,13 @@ export const useTaskStore = defineStore('taskStore', () => {
   )
 
   return {
+    errors,
     tasks,
     completedTasks,
     uncompletedTasks,
     handleStoreTask,
     handleIndexTask,
+    handleIndexUserTask,
     handleUpdateTask,
     handleCompleteTask,
     handleDestroyTask,

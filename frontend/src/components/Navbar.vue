@@ -31,12 +31,12 @@
         <ul v-if="authStore.isLoggedIn" class="navbar-nav">
           <li class="nav-item">
             <RouterLink :to="{ name: 'tasks' }" class="nav-link"
-              >Tasks</RouterLink
+              >All Tasks</RouterLink
             >
           </li>
           <li class="nav-item">
-            <RouterLink :to="{ name: 'summary' }" class="nav-link"
-              >Summary</RouterLink
+            <RouterLink :to="{ name: 'user.tasks' }" class="nav-link"
+              >Your Tasks</RouterLink
             >
           </li>
         </ul>

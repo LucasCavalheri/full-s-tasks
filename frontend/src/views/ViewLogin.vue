@@ -27,7 +27,10 @@
           placeholder="Password"
         />
         <label for="password">Password</label>
-        <div v-if="errors.password && errors.password[0]" class="invalid-feedback">
+        <div
+          v-if="errors.password && errors.password[0]"
+          class="invalid-feedback"
+        >
           {{ errors.password && errors.password[0] }}
         </div>
       </div>
