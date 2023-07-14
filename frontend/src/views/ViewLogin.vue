@@ -44,7 +44,9 @@ import { useAuthStore } from '@/stores/authStore'
 import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
+const toast = useToast()
 const router = useRouter()
 const authStore = useAuthStore()
 const { isLoggedIn, errors } = storeToRefs(authStore)
@@ -59,7 +61,10 @@ const handleSubmit = async () => {
   await handleLogin(form)
 
   if (isLoggedIn.value) {
+    toast.success('Login successfully!')
     router.push({ name: 'tasks' })
+  } else {
+    toast.error('Invalid credentials!')
   }
 }
 </script>

@@ -88,7 +88,9 @@ import { useAuthStore } from '@/stores/authStore'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
+const toast = useToast()
 const authStore = useAuthStore()
 const router = useRouter()
 const navRef = ref(null)
@@ -97,6 +99,7 @@ const isOpen = ref(false)
 const logout = async () => {
   await authStore.handleLogout()
   isOpen.value = false
+  toast.success('Logout successfully!')
   router.push({ name: 'login' })
 }
 

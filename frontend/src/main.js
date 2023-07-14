@@ -1,7 +1,15 @@
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
+import Toast from 'vue-toastification'
 import App from './App.vue'
 import './assets/main.css'
 import router from './router'
+import 'vue-toastification/dist/index.css'
 
-createApp(App).use(createPinia()).use(router).mount('#app')
+createApp(App)
+  .use(createPinia())
+  .use(router)
+  .use(Toast, {
+    transition: 'Vue-Toastification__fade',
+  })
+  .mount('#app')

@@ -38,6 +38,7 @@
 
 <script setup>
 import { computed, nextTick, ref } from 'vue'
+import { useToast } from 'vue-toastification'
 import TaskActions from './TaskActions.vue'
 
 const props = defineProps({
@@ -48,6 +49,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update-task', 'complete-task', 'remove-task'])
 
+const toast = useToast()
 const isEdit = ref(false)
 const editingTask = ref(props.task.name)
 const editInput = ref(null)
@@ -70,6 +72,10 @@ const updateTask = (e) => {
     name: e.target.value,
   }
   isEdit.value = false
+  toast.success('Task updated successfully!', {
+    timeout: 2000,
+    draggable: true,
+  })
   emit('update-task', updatedTask)
 }
 
@@ -78,11 +84,19 @@ const markTaskAsCompleted = () => {
     ...props.task,
     is_completed: Boolean(!props.task.is_completed),
   }
+  toast.success('Task updated successfully!', {
+    timeout: 2000,
+    draggable: true,
+  })
   emit('complete-task', updatedTask)
 }
 
 const removeTask = () => {
   if (confirm('Are you sure you want to delete this task?')) {
+    toast.success('Task deleted successfully!', {
+      timeout: 2000,
+      draggable: true,
+    })
     emit('remove-task', props.task)
   }
 }
