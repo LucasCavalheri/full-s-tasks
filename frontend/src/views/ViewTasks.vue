@@ -11,7 +11,7 @@
           <div class="text-center my-3">
             <button
               @click="showCompletedTasks = !showCompletedTasks"
-              v-if="completedTasks.length && uncompletedTasks.length"
+              v-if="completedTasks.length"
               class="btn btn-sm btn-secondary"
             >
               <span v-if="!showCompletedTasks">Show completed</span>
@@ -37,9 +37,7 @@ const taskStore = useTaskStore()
 const { completedTasks, uncompletedTasks } = storeToRefs(taskStore)
 const { handleIndexTask } = taskStore
 
-console.log(uncompletedTasks.value)
-
-const showCompletedTasks = ref(false)
+const showCompletedTasks = ref(false || completedTasks.value)
 
 onMounted(async () => {
   await handleIndexTask()
