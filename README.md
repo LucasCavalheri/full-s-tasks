@@ -42,6 +42,7 @@ Este projeto foi desenvolvido usando as seguintes tecnologias e stacks:
 - **Laravel** como framework Back-End;
 - **MySQL** como banco de dados.
 
+<hr />
 <br />
 
 <p align='center'>
