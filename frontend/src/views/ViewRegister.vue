@@ -50,6 +50,7 @@
       </div>
       <div class="form-floating mb-3">
         <input
+          :class="{ 'is-invalid': errors.password_confirmation || errors.password }"
           v-model="form.password_confirmation"
           type="password"
           class="form-control"
@@ -57,10 +58,7 @@
           placeholder="Password Confirmation"
         />
         <label for="password_confirmation">Password Confirmation</label>
-        <div
-          v-if="errors.password_confirmation && errors.password_confirmation[0]"
-          class="invalid-feedback"
-        >
+        <div v-if="errors.password" class="invalid-feedback">
           {{ errors.password_confirmation && errors.password_confirmation[0] }}
         </div>
       </div>
@@ -93,13 +91,12 @@ const form = reactive({
 })
 
 const handleSubmit = async () => {
+  console.log(form)
   await handleRegister(form)
 
   if (isLoggedIn.value) {
     toast.success('Registration successful!')
     router.push({ name: 'tasks' })
-  } else {
-    toast.error('Registration failed!')
   }
 }
 </script>

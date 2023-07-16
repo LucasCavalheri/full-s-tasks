@@ -7,7 +7,7 @@
         <input
           :class="{ 'is-invalid': errors.email && errors.email[0] }"
           v-model="form.email"
-          type="email"
+          type="text"
           class="form-control"
           id="email"
           placeholder="name@example.com"
@@ -66,7 +66,8 @@ const handleSubmit = async () => {
   if (isLoggedIn.value) {
     toast.success('Login successfully!')
     router.push({ name: 'tasks' })
-  } else {
+  }
+  if (errors.value === 'The provided credentials are incorrect.') {
     toast.error('Invalid credentials!')
   }
 }

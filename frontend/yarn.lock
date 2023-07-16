@@ -117,6 +117,91 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.18.12.tgz#1da26735ce5954bf914f8f2117b5096c548bbba2"
   integrity sha512-O0UYQVkvfM/jO8a4OwoV0mAKSJw+mjWTAd1MJd/1FCX6uiMdLmMRPK/w6e9OQ0ob2WGxzIm9va/KG0Ja4zIOgg==
 
+"@formkit/core@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/core/-/core-0.17.4.tgz#d2c302bd5dc96ef894d9d20749ca6391d014c7e6"
+  integrity sha512-KH1Xj2cuKyRjLjk/bssxZ2uzXw3SiYpvYFud205zrWaslkButCmZbMI1BTUZ1Eywhsyiqdq1/Z0J9T8SNcAv8Q==
+  dependencies:
+    "@formkit/utils" "0.17.4"
+
+"@formkit/dev@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/dev/-/dev-0.17.4.tgz#bec65556f7011caa57253484b4351caaba169f49"
+  integrity sha512-uqpDOYN/s1hIWyk32HgwKEfczj94zFyePdx5RGJFMINnnh+cXI2ltZfkSXUqPcphOQ7RlTYYRyTebv8f4ZQmPA==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/utils" "0.17.4"
+
+"@formkit/i18n@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/i18n/-/i18n-0.17.4.tgz#a5c57c32b1d5636a467a5467c5d492e4e79da25a"
+  integrity sha512-TDsEFsK7/ot1Dy1FiTLrik3oyENWhLahI0SwqbgRrIMH9tQKMapQEW1vL95e2hGlq7C2QWAVan3W/6j68RtX8A==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/utils" "0.17.4"
+    "@formkit/validation" "0.17.4"
+
+"@formkit/inputs@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/inputs/-/inputs-0.17.4.tgz#1ab08f6edfc71fed24de1edd135bfc910d793b52"
+  integrity sha512-ilGPbEGEXyDbUZe5JM3hxoqls+7qNJAtAGyrV1LN99/OpSf31pTMtJdHIjv9q+UrovQ8+rwIDYNHrdMYQB5kkg==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/utils" "0.17.4"
+
+"@formkit/observer@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/observer/-/observer-0.17.4.tgz#fac0cece72fb606c719a45c85312d5554f24374d"
+  integrity sha512-KQ420Qr88RKIHjLBfxmW52kcl0qvIxrW0wk56zBk1sj5eTGvlLAUfayR6kSVPTbhcP14ymG2gkOQRz+7D76vcg==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/utils" "0.17.4"
+
+"@formkit/rules@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/rules/-/rules-0.17.4.tgz#1795f341033ebf7cee68d21b14b502422868fde6"
+  integrity sha512-QlegMGBKpwdJEl1ey2J+6OeAAEBQJtH9nZgey6YdTcGVUohRisk3zhnS4Vlu8pT7E/L1sauIEF4GyRhZEtY2qg==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/utils" "0.17.4"
+    "@formkit/validation" "0.17.4"
+
+"@formkit/themes@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/themes/-/themes-0.17.4.tgz#74b9a9146f10cab7dd369559e3732be4b8c207d5"
+  integrity sha512-VjVC/TD/lhRLYWP6ctRd+LmBN0+FWLKbcczo2vFl9nzzcmOSRz225pK7kJNN8Futrw+hv383xM97cwXTpOpnlg==
+  dependencies:
+    "@formkit/core" "0.17.4"
+
+"@formkit/utils@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/utils/-/utils-0.17.4.tgz#3af8cd52c69e0b9a4ea2926e8bd0b2517b9ce953"
+  integrity sha512-5xt4gJFqoRFR+/MklUlSeH6aJAebmVK8Fk/Y5wAE136fnx9i52HrXfsuQ6TNYOPiTvDTvtM/SVtvRjSu3qDBzw==
+
+"@formkit/validation@0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/validation/-/validation-0.17.4.tgz#a50e62720f67f9f907d1e9ce1501de242417aea7"
+  integrity sha512-O2pnZkV0+IVaCmhd6W3RbNFKMdZLVbIKPgywSNngmCahxKmMCCgyd91WmmHnQNRPrZo6VOKW7ZfKUGAApYtQAQ==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/observer" "0.17.4"
+    "@formkit/utils" "0.17.4"
+
+"@formkit/vue@^0.17.4":
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/@formkit/vue/-/vue-0.17.4.tgz#035ee5bfff7a7544dad45a3b4ca75b8ae425fad2"
+  integrity sha512-1gG6I6kkVH6aVvpjaApC7gbU+yMRfja0V+I9h3h0ROCBaNmp5vwMjtLF60b9+IcVlkmIZd6VfacMqte84fB6Aw==
+  dependencies:
+    "@formkit/core" "0.17.4"
+    "@formkit/dev" "0.17.4"
+    "@formkit/i18n" "0.17.4"
+    "@formkit/inputs" "0.17.4"
+    "@formkit/observer" "0.17.4"
+    "@formkit/rules" "0.17.4"
+    "@formkit/themes" "0.17.4"
+    "@formkit/utils" "0.17.4"
+    "@formkit/validation" "0.17.4"
+
 "@jridgewell/sourcemap-codec@^1.4.15":
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz#d7c6e6755c78567a951e04ab52ef0fd26de59f32"
@@ -126,6 +211,15 @@
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.17.tgz#5c9f3c617f64a9735d7b72a7cc671e166d900c40"
   integrity sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA==
+
+"@vee-validate/yup@^4.10.6":
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/@vee-validate/yup/-/yup-4.10.6.tgz#97df47d691ab7d066ccafa0c22646b97bc2042f8"
+  integrity sha512-xNclJUCbG333uhdGS+OwOIkLGEp3ds1ouHir9jzWrjzgDSCPYzscpvd1JOWcsO94zJENNJLvxA6qJQ7Wsew/eg==
+  dependencies:
+    type-fest "^3.12.0"
+    vee-validate "^4.10.6"
+    yup "^1.2.0"
 
 "@vitejs/plugin-vue@^4.2.3":
   version "4.2.3"
@@ -174,7 +268,7 @@
     "@vue/compiler-dom" "3.3.4"
     "@vue/shared" "3.3.4"
 
-"@vue/devtools-api@^6.5.0":
+"@vue/devtools-api@^6.0.0-beta.15", "@vue/devtools-api@^6.5.0":
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.5.0.tgz#98b99425edee70b4c992692628fa1ea2c1e57d07"
   integrity sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==
@@ -383,6 +477,11 @@ postcss@^8.1.10, postcss@^8.4.25:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+property-expr@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
+  integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
+
 proxy-from-env@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
@@ -399,6 +498,41 @@ source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+tiny-case@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
+  integrity sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==
+
+toposort@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+  integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
+
+type-fest@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
+  integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
+
+type-fest@^3.12.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.13.0.tgz#b088347ae73779a750c461694b264340c4c8c0d7"
+  integrity sha512-Gur3yQGM9qiLNs0KPP7LPgeRbio2QTt4xXouobMCarR0/wyW3F+F/+OWwshg3NG0Adon7uQfSZBpB46NfhoF1A==
+
+vee-validate@^4.10.6:
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.6.tgz#7c934938c0cde8b9461ce17ff310c7224cff45de"
+  integrity sha512-XpZ135NrgEMF/6vyRI5nMSmVXJoirT9m3mHYBB+9DfF64yTQTKO/lKLsVWyjbb00sHHjZ4TLy3IS3az8YVh95w==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    type-fest "^3.12.0"
+
+vee-validate@^4.5.8:
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.5.8.tgz#8e394978ef3b74e589b869c626cd2a7d391ac81c"
+  integrity sha512-XZx2J93rlET49CdIIoxG9R6wQNoT3RxUUw9ar3QbIhczpzbtlm4BQ+TpCA9DoYHKFlApcXnE28WU7m4quoPsCA==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.15"
 
 vite@^4.3.9:
   version "4.4.3"
@@ -438,3 +572,13 @@ vue@^3.3.4:
     "@vue/runtime-dom" "3.3.4"
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
+
+yup@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-1.2.0.tgz#9e51af0c63bdfc9be0fdc6c10aa0710899d8aff6"
+  integrity sha512-PPqYKSAXjpRCgLgLKVGPA33v5c/WgEx3wi6NFjIiegz90zSwyMpvTFp/uGcVnnbx6to28pgnzp/q8ih3QRjLMQ==
+  dependencies:
+    property-expr "^2.0.5"
+    tiny-case "^1.0.3"
+    toposort "^2.0.2"
+    type-fest "^2.19.0"
